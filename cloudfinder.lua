@@ -39,7 +39,6 @@ for x = 0, #df.global.world.raws.inorganics-1 do
 	end
 end
 --
--- print("There are this many husk-making evil clouds:",evil_cloud_count)
 print("This is the list of husk-making evil clouds:")
 printall(evil_cloud_list)
 --
