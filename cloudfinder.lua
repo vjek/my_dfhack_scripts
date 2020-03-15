@@ -43,10 +43,10 @@ print("This is the list of husk-making evil clouds:")
 printall(evil_cloud_list)
 --
 for x = 0, #df.global.world.raws.interactions-1 do
-	if string.find(df.global.world.raws.interactions[x].name,"REGIONAL_") then
+	if string.find(df.global.world.raws.interactions[x].name,"REGIONAL_") ~= nil then
 		for y = 0, #df.global.world.raws.interactions[x].str-1 do
 			for z = 1, #evil_cloud_list do
-				if string.find(df.global.world.raws.interactions[x].str[y][0],evil_cloud_list[z]) then
+				if string.find(df.global.world.raws.interactions[x].str[y][0],evil_cloud_list[z]) ~= nil then
 					table.insert(husking_region_list,{df.global.world.raws.interactions[x].name,evil_cloud_list[z]})
 				end
 			end
