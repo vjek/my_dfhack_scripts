@@ -19,7 +19,7 @@ This is the list of husk-making region interactions:
 2                        = EVIL_CLOUD_4
 
 The first list are all the EVIL_CLOUD inorganic materials that create husks.
-The second list are all of the world interaction regions that contain one of
+The second list are all of the world region interactions that contain one of
  those clouds from the first list.
 
 ]====]
