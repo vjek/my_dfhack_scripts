@@ -45,7 +45,7 @@ printall(evil_cloud_list)
 for x = 0, #df.global.world.raws.interactions-1 do
 	if string.find(df.global.world.raws.interactions[x].name,"REGIONAL_") then
 		for y = 0, #df.global.world.raws.interactions[x].str-1 do
-			for z = 1, #evil_cloud_list-1 do
+			for z = 1, #evil_cloud_list do
 				if string.find(df.global.world.raws.interactions[x].str[y][0],evil_cloud_list[z]) then
 					table.insert(husking_region_list,{df.global.world.raws.interactions[x].name,evil_cloud_list[z]})
 				end
