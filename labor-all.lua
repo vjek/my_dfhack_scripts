@@ -14,10 +14,16 @@ function labor_all(unit)
         return
 	end
 	for key,v in pairs(unit.status.labors) do
-		unit.status.labors[key] = true
+		if tonumber(key) then
+			break
+		elseif key == "CUTWOOD" then
+		    unit.status.labors.CUTWOOD = false
+		elseif key == "HUNT" then
+		    unit.status.labors.HUNT = false
+		else
+		    unit.status.labors[key] = true
+		end
 	end
-	unit.status.labors["CUTWOOD"] = false
-	unit.status.labors["HUNT"] = false
 end
 
 function adjust_all_dwarves()
@@ -28,7 +34,8 @@ function adjust_all_dwarves()
 			lastdwarf=v
 		end
 	end
-	lastdwarf.status.labors["CUTWOOD"] = true
+	lastdwarf.status.labors.CUTWOOD = true
+	lastdwarf.status.labors.MINE = false
 end
 
 adjust_all_dwarves()
