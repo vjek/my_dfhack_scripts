@@ -20,6 +20,8 @@ function labor_all(unit)
 		    unit.status.labors.CUTWOOD = false
 		elseif key == "HUNT" then
 		    unit.status.labors.HUNT = false
+		elseif key == "FISH" then
+		    unit.status.labors.FISH = false
 		else
 		    unit.status.labors[key] = true
 		end
@@ -31,11 +33,13 @@ function adjust_all_dwarves()
         if v.race == df.global.ui.race_id and v.status.current_soul then
             print("Adjusting "..dfhack.TranslateName(dfhack.units.getVisibleName(v)))
 			labor_all(v)
+			v.military.pickup_flags.update = true
 			lastdwarf=v
 		end
 	end
 	lastdwarf.status.labors.MINE = false
 	lastdwarf.status.labors.CUTWOOD = true
+	lastdwarf.military.pickup_flags.update = true
 end
 
 adjust_all_dwarves()
