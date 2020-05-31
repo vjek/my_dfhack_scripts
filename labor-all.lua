@@ -34,8 +34,8 @@ function adjust_all_dwarves()
 			lastdwarf=v
 		end
 	end
-	lastdwarf.status.labors.CUTWOOD = true
 	lastdwarf.status.labors.MINE = false
+	lastdwarf.status.labors.CUTWOOD = true
 end
 
 adjust_all_dwarves()
