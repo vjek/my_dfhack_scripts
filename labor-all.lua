@@ -4,7 +4,7 @@
 
  labor-all
  =============
- assign all dwarves all labors, minus hunting, and assign one dwarf to cut wood
+ assign all dwarves all labors, minus hunting & fishing, and assign one dwarf to cut wood
 
 ]====]
 
