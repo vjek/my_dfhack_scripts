@@ -250,10 +250,9 @@ function build_all_lists(printflag)
     list_of_poems_string = ""
     vec=df.global.world.poetic_forms.all
     for k=0,#vec-1 do
-    	civ_id=vec[k].originating_entity
         name=dfhack.TranslateName(vec[k].name,true)
         list_of_poems[name]=k
-        list_of_poems_string=list_of_poems_string..k..":"..name.."|"..civ_id..","
+        list_of_poems_string=list_of_poems_string..k..":"..name..","
     end
     if printflag==1 then
         print("\nTYPE 9 POEMS: "..list_of_poems_string) -- printall(list_of_poems)
