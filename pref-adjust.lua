@@ -134,7 +134,7 @@ if profile == "GOTH" then
         insert_preference(unit,df.unit_preference.T_type.LikeCreature,list_of_creatures.DEMON_1)
     end
     if #df.global.world.poetic_forms.bad then
---        insert_preference(unit,df.unit_preference.T_type.LikePoeticForm,#df.global.world.poetic_forms.bad-1) -- this just inserts the last song out of typically many.
+        insert_preference(unit,df.unit_preference.T_type.LikePoeticForm,#df.global.world.poetic_forms.bad-1) -- this just inserts the last song out of typically many.
     end
     if #df.global.world.musical_forms.bad then
         insert_preference(unit,df.unit_preference.T_type.LikeMusicalForm,#df.global.world.musical_forms.bad-1) -- same goes for music
