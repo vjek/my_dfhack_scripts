@@ -33,7 +33,7 @@ automatically cleared, normally.
 function insert_preference(unit,mytype,val1)
     if mytype == df.unit_preference.T_type.LikeMaterial then
 		unit.status.current_soul.preferences:insert("#",{new = true, type = 0 , item_type = -1 , poetic_form_id = -1, musical_form_id = -1, dance_form_id = -1, mattype = dfhack.matinfo.find(val1).type , mat_state = 0, matindex = dfhack.matinfo.find(val1).index , active = true})
-        -- mattype for some is non zero, those non-iorganice like creature:gazelle:hoof is 42,344
+        -- mattype for some is non zero, those non-inorganic like creature:gazelle:hoof is 42,344
     end
 
     if mytype == df.unit_preference.T_type.LikeFood then
@@ -80,14 +80,38 @@ if profile == "IDEAL" then
     insert_preference(unit,df.unit_preference.T_type.HateCreature,list_of_creatures.BIRD_BUZZARD)
     insert_preference(unit,df.unit_preference.T_type.HateCreature,list_of_creatures.BIRD_VULTURE)
     insert_preference(unit,df.unit_preference.T_type.HateCreature,list_of_creatures.CRUNDLE)
+    
     if #df.global.world.poetic_forms.all then
-        insert_preference(unit,df.unit_preference.T_type.LikePoeticForm,0) -- this just inserts the first song out of typically many.
+	    vec=df.global.world.poetic_forms.all
+	    for k=0,#vec-1 do
+	    	if unit.civ_id == vec[k].originating_entity then
+		        name=dfhack.TranslateName(vec[k].name,true)
+		        list_of_poems[k]=name
+	        end
+	    end
+        insert_preference(unit,df.unit_preference.T_type.LikePoeticForm,#list_of_poems) -- this just inserts the last song out of typically many.
     end
+
     if #df.global.world.musical_forms.all then
-        insert_preference(unit,df.unit_preference.T_type.LikeMusicalForm,0) -- same goes for music
+	    vec=df.global.world.musical_forms.all
+	    for k=0,#vec-1 do
+	    	if unit.civ_id == vec[k].originating_entity then
+		        name=dfhack.TranslateName(vec[k].name,true)
+		        list_of_music[k]=name
+	        end
+	    end
+        insert_preference(unit,df.unit_preference.T_type.LikeMusicalForm,#list_of_music) -- this just inserts the last song out of typically many.
     end
+
     if #df.global.world.dance_forms.all then
-        insert_preference(unit,df.unit_preference.T_type.LikeDanceForm,0) -- and dancing
+	    vec=df.global.world.dance_forms.all
+	    for k=0,#vec-1 do
+	    	if unit.civ_id == vec[k].originating_entity then
+		        name=dfhack.TranslateName(vec[k].name,true)
+		        list_of_dances[k]=name
+	        end
+	    end
+        insert_preference(unit,df.unit_preference.T_type.LikeDanceForm,#list_of_dances) -- this just inserts the last song out of typically many.
     end
 end -- end IDEAL profile
 
@@ -109,14 +133,14 @@ if profile == "GOTH" then
     if list_of_creatures.DEMON_1 and df.global.world.raws.creatures.all[list_of_creatures.DEMON_1].prefstring[0] then
         insert_preference(unit,df.unit_preference.T_type.LikeCreature,list_of_creatures.DEMON_1)
     end
-    if #df.global.world.poetic_forms.all then
-	        insert_preference(unit,df.unit_preference.T_type.LikePoeticForm,#df.global.world.poetic_forms.all-1) -- this just inserts the last song out of typically many.
+    if #df.global.world.poetic_forms.bad then
+--        insert_preference(unit,df.unit_preference.T_type.LikePoeticForm,#df.global.world.poetic_forms.bad-1) -- this just inserts the last song out of typically many.
     end
-    if #df.global.world.musical_forms.all then
-        insert_preference(unit,df.unit_preference.T_type.LikeMusicalForm,#df.global.world.musical_forms.all-1) -- same goes for music
+    if #df.global.world.musical_forms.bad then
+        insert_preference(unit,df.unit_preference.T_type.LikeMusicalForm,#df.global.world.musical_forms.bad-1) -- same goes for music
     end
-    if #df.global.world.dance_forms.all then
-        insert_preference(unit,df.unit_preference.T_type.LikeDanceForm,#df.global.world.dance_forms.all-1) -- and dancing
+    if #df.global.world.dance_forms.bad then
+        insert_preference(unit,df.unit_preference.T_type.LikeDanceForm,#df.global.world.dance_forms.bad-1) -- and dancing
     end
 end -- end GOTH profile
 
@@ -226,9 +250,10 @@ function build_all_lists(printflag)
     list_of_poems_string = ""
     vec=df.global.world.poetic_forms.all
     for k=0,#vec-1 do
+    	civ_id=vec[k].originating_entity
         name=dfhack.TranslateName(vec[k].name,true)
         list_of_poems[name]=k
-        list_of_poems_string=list_of_poems_string..k..":"..name..","
+        list_of_poems_string=list_of_poems_string..k..":"..name.."|"..civ_id..","
     end
     if printflag==1 then
         print("\nTYPE 9 POEMS: "..list_of_poems_string) -- printall(list_of_poems)
