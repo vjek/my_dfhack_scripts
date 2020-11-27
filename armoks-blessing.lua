@@ -46,10 +46,9 @@ function elevate_performance(unit)
     unit.status.current_soul.performance_skills.musical_instruments:resize(0)
 
     -- find all instruments for this units civ
-    civ_instrument_list={}
     for i=0, #df.global.world.raws.itemdefs.instruments-1 do
       if df.global.world.raws.itemdefs.instruments[i].source_enid == unit.civ_id then
-        --		print("instrument: "..df.global.world.raws.itemdefs.instruments[i].name)
+--		print("instrument: "..df.global.world.raws.itemdefs.instruments[i].name)
         utils.insert_or_update(unit.status.current_soul.performance_skills.musical_instruments, { new = true, id = df.global.world.raws.itemdefs.instruments[i].subtype, rating = 20 }, 'id')
       end
     end
@@ -59,11 +58,10 @@ function elevate_performance(unit)
 
     -- find all poems for this units civ
     if #df.global.world.poetic_forms.all then
-      civ_poem_list = {}
       vec=df.global.world.poetic_forms.all
       for k=0,#vec-1 do
         if unit.civ_id == vec[k].originating_entity then
-          --	    		print("poem:"..dfhack.TranslateName(vec[k].name,true))
+--		  print("poem:"..dfhack.TranslateName(vec[k].name,true))
           utils.insert_or_update(unit.status.current_soul.performance_skills.poetic_forms, { new = true, id = vec[k].id, rating = 20 }, 'id')
         end
       end
@@ -74,11 +72,10 @@ function elevate_performance(unit)
 
     -- find all musics for this units civ
     if #df.global.world.musical_forms.all then
-      civ_music_list = {}
       vec=df.global.world.musical_forms.all
       for k=0,#vec-1 do
         if unit.civ_id == vec[k].originating_entity then
-          --	    		print("music:"..dfhack.TranslateName(vec[k].name,true))
+--		  print("music:"..dfhack.TranslateName(vec[k].name,true))
           utils.insert_or_update(unit.status.current_soul.performance_skills.musical_forms, { new = true, id = vec[k].id, rating = 20 }, 'id')
         end
       end
@@ -89,11 +86,10 @@ function elevate_performance(unit)
 
     -- find all dances for this units civ
     if #df.global.world.dance_forms.all then
-      civ_dance_list = {}
       vec=df.global.world.dance_forms.all
       for k=0,#vec-1 do
         if unit.civ_id == vec[k].originating_entity and vec[k].group_size > 0 then -- unit civ group dances only
-          --	    		print("dance:"..dfhack.TranslateName(vec[k].name,true))
+--        print("dance:"..dfhack.TranslateName(vec[k].name,true))
           utils.insert_or_update(unit.status.current_soul.performance_skills.dance_forms, { new = true, id = vec[k].id, rating = 20 }, 'id')
         end
       end
