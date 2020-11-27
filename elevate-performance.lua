@@ -1,4 +1,4 @@
--- Adjust all entertainer performance attributes of a single unit
+-- Adjust all entertainer performance skills of a single unit
 -- by vjek
 --[====[
 
